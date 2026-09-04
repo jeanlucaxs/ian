@@ -66,6 +66,8 @@
     .status-strip { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 16px; }
     .status-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--line); background: rgba(238,226,197,.28); font: 11px var(--mono); text-transform: uppercase; }
     .status-pill strong { font-weight: 600; color: var(--ink); }
+    .countdown { display: inline-flex; align-items: baseline; gap: 8px; margin-top: 20px; padding: 12px 0; color: var(--rust); font: 500 18px var(--mono); letter-spacing: .04em; }
+    .countdown strong { font-size: clamp(3rem, 7vw, 6rem); line-height: .9; color: var(--rust); }
 
     main { min-height: calc(100vh - 155px); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(330px, .9fr); align-items: center; gap: 9vw; padding: 68px 0 84px; }
     .eyebrow { display: flex; align-items: center; gap: 12px; color: var(--muted); font: 12px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
@@ -167,6 +169,7 @@
           <div class="status-pill"><span data-i18n="rights">copyright issue</span> <strong>92%</strong></div>
           <div class="status-pill"><span data-i18n="eta">expected time</span> <strong>19 hours</strong></div>
         </div>
+        <div class="countdown"><span>10 minutes left</span></div>
         <div class="cta-row">
           <button class="ghost" id="peekButton"><span data-i18n="peek">read the file</span> <span aria-hidden="true">↓</span></button>
         </div>
