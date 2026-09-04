@@ -79,8 +79,8 @@
     .cta-row { display: flex; gap: 12px; align-items: center; }
     button { border: 0; cursor: pointer; font: 500 12px var(--mono); transition: transform .2s ease, background .2s ease; }
     button:focus-visible { outline: 2px solid var(--rust); outline-offset: 4px; }
-    .primary { padding: 16px 20px; background: var(--ink); color: var(--cream); }
-    .primary:hover { transform: translateY(-3px); background: var(--rust); }
+    .primary, .primary-link { display: inline-flex; align-items: center; justify-content: center; padding: 16px 20px; background: var(--ink); color: var(--cream); text-decoration: none; }
+    .primary:hover, .primary-link:hover { transform: translateY(-3px); background: var(--rust); }
     .ghost { padding: 15px 12px; color: var(--ink); background: transparent; }
     .ghost:hover { color: var(--rust); }
 
@@ -171,7 +171,7 @@
         </div>
         <div class="countdown"><span>10 minutes left</span></div>
         <div class="cta-row">
-          <button class="ghost" id="peekButton"><span data-i18n="peek">read the file</span> <span aria-hidden="true">↓</span></button>
+          <a class="primary-link" href="https://drive.google.com/file/d/1ZsoO0CTeM68f84ubhkPYPhadfSJi-FtO/view?usp=sharing" target="_blank" rel="noopener noreferrer" id="downloadButton"><span data-i18n="download">download</span></a>
         </div>
       </section>
 
@@ -212,14 +212,12 @@
     </footer>
   </div>
   <script>
-    const peekButton = document.querySelector('#peekButton');
-    const card = document.querySelector('.date-card');
     const languageSelect = document.querySelector('#languageSelect');
     const translations = {
       en: {
         brand: 'horizon archive', headerNote: 'case file in progress', languageLabel: 'language', eyebrow: 'record found',
         headline: 'still resolving problems', intro: 'A narrative investigation about family secrets, tested friendships and a room that should have stayed locked.',
-        rights: 'copyright issue', eta: 'expected time', peek: 'read the file', fileCard: 'case file', almost: 'almost<br>there.',
+        rights: 'copyright issue', eta: 'expected time', download: 'download', fileCard: 'case file', almost: 'almost<br>there.',
         cardText: 'The file is incomplete.<br>New clues keep arriving.', progress: 'investigation', caseKicker: 'case summary / 17-B',
         caseTitle: 'Every mystery<br>leaves a mark.',
         story1: 'Lia finds a strange envelope at home. Inside, an old photograph and the number <strong>17</strong> point to a forgotten place at Horizon School: Locker 17 and, beyond it, room 17-B.',
@@ -231,7 +229,7 @@
       pt: {
         brand: 'arquivo horizonte', headerNote: 'caso em andamento', languageLabel: 'idioma', eyebrow: 'registro encontrado',
         headline: 'ainda resolvendo problemas', intro: 'Uma investigação narrativa sobre segredos de família, amizades testadas e uma sala que deveria ter permanecido trancada.',
-        rights: 'problema de direitos', eta: 'tempo estimado', peek: 'ler o arquivo', fileCard: 'ficha do caso', almost: 'quase<br>lá.',
+        rights: 'problema de direitos', eta: 'tempo estimado', download: 'baixar', fileCard: 'ficha do caso', almost: 'quase<br>lá.',
         cardText: 'O arquivo está incompleto.<br>As pistas continuam chegando.', progress: 'investigação', caseKicker: 'resumo do caso / 17-B',
         caseTitle: 'Todo mistério<br>deixa marcas.',
         story1: 'Lia encontra um envelope estranho em casa. Dentro dele, uma fotografia antiga e o número <strong>17</strong> apontam para um lugar esquecido do Colégio Horizonte: o Armário 17 e, além dele, a sala 17-B.',
@@ -243,7 +241,7 @@
       ru: {
         brand: 'архив горизонта', headerNote: 'дело расследуется', languageLabel: 'язык', eyebrow: 'запись найдена',
         headline: 'всё ещё решаем проблемы', intro: 'Рассказ о семейных тайнах, проверенной дружбе и комнате, которая должна была остаться запертой.',
-        rights: 'проблема с правами', eta: 'примерное время', peek: 'открыть архив', fileCard: 'материалы дела', almost: 'почти<br>готово.',
+        rights: 'проблема с правами', eta: 'примерное время', download: 'скачать', fileCard: 'материалы дела', almost: 'почти<br>готово.',
         cardText: 'Дело не завершено.<br>Новые улики всё находят путь.', progress: 'расследование', caseKicker: 'кратко о деле / 17-B',
         caseTitle: 'У каждой тайны<br>остаются следы.',
         story1: 'Лиа находит дома странный конверт. Внутри старая фотография и число <strong>17</strong>, указывающие на забытое место в школе «Горизонт»: шкафчик 17 и комнату 17-B.',
@@ -264,15 +262,6 @@
     }
 
     languageSelect.addEventListener('change', (event) => setLanguage(event.target.value));
-
-    peekButton.addEventListener('click', () => {
-      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      card.animate([
-        { transform: 'rotate(3deg) scale(1)' },
-        { transform: 'rotate(-2deg) scale(1.04)' },
-        { transform: 'rotate(3deg) scale(1)' }
-      ], { duration: 600, easing: 'ease-out' });
-    });
 
     document.querySelector('#year').textContent = new Date().getFullYear();
   </script>
