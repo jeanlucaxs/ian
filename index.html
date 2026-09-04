@@ -66,6 +66,8 @@
     .status-strip { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 16px; }
     .status-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--line); background: rgba(238,226,197,.28); font: 11px var(--mono); text-transform: uppercase; }
     .status-pill strong { font-weight: 600; color: var(--ink); }
+    .access-box { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--line); background: rgba(238,226,197,.28); font: 11px var(--mono); text-transform: uppercase; }
+    .access-box strong { font-size: 13px; color: var(--ink); }
 
     main { min-height: calc(100vh - 155px); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(330px, .9fr); align-items: center; gap: 9vw; padding: 68px 0 84px; }
     .eyebrow { display: flex; align-items: center; gap: 12px; color: var(--muted); font: 12px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
@@ -165,6 +167,7 @@
         <div class="status-strip">
           <div class="status-pill"><span data-i18n="rights">copyright issue</span> <strong>92%</strong></div>
           <div class="status-pill"><span data-i18n="eta">expected time</span> <strong>18:30</strong></div>
+          <div class="access-box"><span>accesses</span> <strong id="accessCounter">0</strong></div>
         </div>
         <div class="cta-row">
           <button class="primary" id="notifyButton"><span data-i18n="notify">notify me when it opens</span> <span aria-hidden="true">↗</span></button>
@@ -280,7 +283,27 @@
       ], { duration: 600, easing: 'ease-out' });
     });
 
+    async function updateAccessCounter() {
+      try {
+        const response = await fetch('./acessos.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error('Could not read access file');
+        const count = Number(await response.text()) || 0;
+        const nextCount = count + 1;
+
+        await fetch('./acessos.json', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: String(nextCount)
+        });
+
+        document.querySelector('#accessCounter').textContent = String(nextCount);
+      } catch (error) {
+        document.querySelector('#accessCounter').textContent = 'error';
+      }
+    }
+
     document.querySelector('#year').textContent = new Date().getFullYear();
+    updateAccessCounter();
   </script>
 </body>
 </html>
