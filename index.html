@@ -15,7 +15,7 @@
       --muted: #76624b;
       --line: rgba(48, 37, 28, 0.22);
       --moss: #5b6541;
-      --rust: #98533e;
+      --rust: #d96d42;
       --cream: #eee2c5;
       --serif: 'Lora', Georgia, serif;
       --sans: 'Special Elite', Georgia, serif;
@@ -58,7 +58,7 @@
     header, main, footer { width: min(1240px, calc(100% - 64px)); margin: 0 auto; }
     header { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; border-bottom: 1px solid var(--line); }
     .brand { display: flex; align-items: center; gap: 11px; font: 500 12px var(--mono); letter-spacing: .04em; text-transform: uppercase; }
-    .mark { width: 12px; height: 12px; background: var(--rust); border-radius: 50%; box-shadow: 0 0 0 5px rgba(152,83,62,.14); }
+    .mark { width: 12px; height: 12px; background: var(--rust); border-radius: 50%; box-shadow: 0 0 0 5px rgba(217,109,66,.2); }
     .header-tools { display: flex; align-items: center; gap: 22px; }
     .header-note { color: var(--muted); font: 12px var(--mono); }
     .language { display: flex; align-items: center; gap: 8px; color: var(--muted); font: 11px var(--mono); text-transform: uppercase; }
@@ -71,6 +71,7 @@
     .eyebrow { display: flex; align-items: center; gap: 12px; color: var(--muted); font: 12px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
     .eyebrow span { width: 37px; height: 1px; background: var(--rust); }
     h1 { max-width: 760px; margin: 27px 0 31px; font: 500 clamp(4.1rem, 8.6vw, 8.7rem)/.87 var(--serif); letter-spacing: -.065em; }
+    h1 { color: var(--ink); }
     h1 em { display: block; margin-left: clamp(1.3rem, 6vw, 6rem); color: var(--rust); }
     .intro { max-width: 390px; margin: 0 0 42px; color: #594735; font-size: 15px; line-height: 1.7; }
     .cta-row { display: flex; gap: 12px; align-items: center; }
@@ -160,11 +161,11 @@
     <main>
       <section class="hero revealed delay">
         <div class="eyebrow"><span></span> <span data-i18n="eyebrow">record found</span></div>
-        <h1 data-i18n="headline">not ready yet,<br>still resolving problems</h1>
+        <h1 data-i18n="headline">still resolving problems</h1>
         <p class="intro" data-i18n="intro">A narrative investigation about family secrets, tested friendships and a room that should have stayed locked.</p>
         <div class="status-strip">
           <div class="status-pill"><span data-i18n="rights">copyright issue</span> <strong>92%</strong></div>
-          <div class="status-pill"><span data-i18n="eta">expected time</span> <strong>18:30</strong></div>
+          <div class="status-pill"><span data-i18n="eta">expected time</span> <strong>19 hours</strong></div>
         </div>
         <div class="cta-row">
           <button class="ghost" id="peekButton"><span data-i18n="peek">read the file</span> <span aria-hidden="true">↓</span></button>
@@ -214,7 +215,7 @@
     const translations = {
       en: {
         brand: 'horizon archive', headerNote: 'case file in progress', languageLabel: 'language', eyebrow: 'record found',
-        headline: 'not ready yet,<br>still resolving problems', intro: 'A narrative investigation about family secrets, tested friendships and a room that should have stayed locked.',
+        headline: 'still resolving problems', intro: 'A narrative investigation about family secrets, tested friendships and a room that should have stayed locked.',
         rights: 'copyright issue', eta: 'expected time', peek: 'read the file', fileCard: 'case file', almost: 'almost<br>there.',
         cardText: 'The file is incomplete.<br>New clues keep arriving.', progress: 'investigation', caseKicker: 'case summary / 17-B',
         caseTitle: 'Every mystery<br>leaves a mark.',
@@ -226,8 +227,8 @@
       },
       pt: {
         brand: 'arquivo horizonte', headerNote: 'caso em andamento', languageLabel: 'idioma', eyebrow: 'registro encontrado',
-        headline: 'ainda não está pronto,<br>ainda resolvendo problemas', intro: 'Uma investigação narrativa sobre segredos de família, amizades testadas e uma sala que deveria ter permanecido trancada.',
-        rights: 'problema de direitos', eta: 'horário previsto', peek: 'ler o arquivo', fileCard: 'ficha do caso', almost: 'quase<br>lá.',
+        headline: 'ainda resolvendo problemas', intro: 'Uma investigação narrativa sobre segredos de família, amizades testadas e uma sala que deveria ter permanecido trancada.',
+        rights: 'problema de direitos', eta: 'tempo estimado', peek: 'ler o arquivo', fileCard: 'ficha do caso', almost: 'quase<br>lá.',
         cardText: 'O arquivo está incompleto.<br>As pistas continuam chegando.', progress: 'investigação', caseKicker: 'resumo do caso / 17-B',
         caseTitle: 'Todo mistério<br>deixa marcas.',
         story1: 'Lia encontra um envelope estranho em casa. Dentro dele, uma fotografia antiga e o número <strong>17</strong> apontam para um lugar esquecido do Colégio Horizonte: o Armário 17 e, além dele, a sala 17-B.',
@@ -238,8 +239,8 @@
       },
       ru: {
         brand: 'архив горизонта', headerNote: 'дело расследуется', languageLabel: 'язык', eyebrow: 'запись найдена',
-        headline: 'ещё не готово,<br>всё ещё решаем проблемы', intro: 'Рассказ о семейных тайнах, проверенной дружбе и комнате, которая должна была остаться запертой.',
-        rights: 'проблема с правами', eta: 'ожидаемое время', peek: 'открыть архив', fileCard: 'материалы дела', almost: 'почти<br>готово.',
+        headline: 'всё ещё решаем проблемы', intro: 'Рассказ о семейных тайнах, проверенной дружбе и комнате, которая должна была остаться запертой.',
+        rights: 'проблема с правами', eta: 'примерное время', peek: 'открыть архив', fileCard: 'материалы дела', almost: 'почти<br>готово.',
         cardText: 'Дело не завершено.<br>Новые улики всё находят путь.', progress: 'расследование', caseKicker: 'кратко о деле / 17-B',
         caseTitle: 'У каждой тайны<br>остаются следы.',
         story1: 'Лиа находит дома странный конверт. Внутри старая фотография и число <strong>17</strong>, указывающие на забытое место в школе «Горизонт»: шкафчик 17 и комнату 17-B.',
