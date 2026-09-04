@@ -1,17 +1,17 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#d9c8a7" />
+  <meta name="theme-color" content="#6b4a35" />
   <title>not done yet...</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,500;1,500&family=Special+Elite&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --paper: #d9c8a7;
-      --ink: #30251c;
+      --paper: #cdb58b;
+      --ink: #2b2119;
       --muted: #76624b;
       --line: rgba(48, 37, 28, 0.22);
       --moss: #5b6541;
@@ -29,7 +29,7 @@
       min-height: 100vh;
       overflow-x: hidden;
       color: var(--ink);
-      background: #d9c8a7;
+      background: radial-gradient(circle at 18% 14%, #e2d0a6 0, transparent 34%), linear-gradient(125deg, #b89a6d, var(--paper) 42%, #b79567);
       font-family: var(--sans);
     }
 
@@ -38,12 +38,12 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: .25;
+      opacity: .38;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E");
       z-index: 5;
     }
 
-    .page { position: relative; min-height: 100vh; isolation: isolate; }
+    .page { position: relative; min-height: 100vh; isolation: isolate; border-left: 1px solid rgba(43,33,25,.12); border-right: 1px solid rgba(43,33,25,.12); }
     .page::before, .page::after {
       content: ''; position: absolute; z-index: -1; border-radius: 50%; filter: blur(1px);
     }
@@ -59,7 +59,10 @@
     header { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; border-bottom: 1px solid var(--line); }
     .brand { display: flex; align-items: center; gap: 11px; font: 500 12px var(--mono); letter-spacing: .04em; text-transform: uppercase; }
     .mark { width: 12px; height: 12px; background: var(--rust); border-radius: 50%; box-shadow: 0 0 0 5px rgba(152,83,62,.14); }
+    .header-tools { display: flex; align-items: center; gap: 22px; }
     .header-note { color: var(--muted); font: 12px var(--mono); }
+    .language { display: flex; align-items: center; gap: 8px; color: var(--muted); font: 11px var(--mono); text-transform: uppercase; }
+    .language select { padding: 7px 20px 7px 8px; color: var(--ink); border: 1px solid var(--line); border-radius: 0; background: rgba(238,226,197,.34); font: 11px var(--mono); cursor: pointer; }
 
     main { min-height: calc(100vh - 155px); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(330px, .9fr); align-items: center; gap: 9vw; padding: 68px 0 84px; }
     .eyebrow { display: flex; align-items: center; gap: 12px; color: var(--muted); font: 12px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
@@ -91,7 +94,7 @@
     .track { height: 5px; background: rgba(25,33,30,.12); }
     .fill { width: 64%; height: 100%; background: var(--rust); }
 
-    .case-file { position: relative; padding: 82px 0 100px; border-top: 1px solid var(--line); }
+    .case-file { position: relative; padding: 82px 0 100px; border-top: 1px solid var(--line); background: rgba(73,48,30,.05); }
     .case-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: 9vw; align-items: start; }
     .case-kicker { color: var(--rust); font: 12px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
     .case-file h2 { margin: 17px 0 0; font: 500 clamp(2.5rem, 5vw, 5rem)/.95 var(--serif); letter-spacing: -.05em; }
@@ -115,6 +118,7 @@
       header, main, footer { width: min(100% - 38px, 560px); }
       header { padding: 22px 0; }
       .header-note { display: none; }
+      .header-tools { gap: 0; }
       main { display: block; padding: 68px 0 56px; }
       h1 { font-size: clamp(4rem, 19vw, 7rem); margin-top: 25px; }
       .intro { margin-bottom: 32px; }
@@ -137,29 +141,38 @@
       <svg viewBox="0 0 185 185"><path d="M2 2h181M2 2v181M2 2l128 181M2 2L183 130"/><path d="M2 24c43-2 78 8 100 32s31 60 28 127M2 52c28-1 51 6 67 23s23 43 22 108M2 83c17 0 30 4 39 14s14 27 13 86M2 114c8 0 14 2 18 7s6 15 6 62"/></svg>
     </div>
     <header class="revealed">
-      <div class="brand"><span class="mark"></span> arquivo horizonte / 002</div>
-      <div class="header-note">caso em aberto · est. 2026</div>
+      <div class="brand"><span class="mark"></span> <span data-i18n="brand">horizon archive</span></div>
+      <div class="header-tools">
+        <div class="header-note" data-i18n="headerNote">case file in progress</div>
+        <label class="language"><span data-i18n="languageLabel">language</span>
+          <select id="languageSelect" aria-label="Choose language">
+            <option value="en">English</option>
+            <option value="pt">Português</option>
+            <option value="ru">Русский</option>
+          </select>
+        </label>
+      </div>
     </header>
 
     <main>
       <section class="hero revealed delay">
-        <div class="eyebrow"><span></span> registro encontrado</div>
+        <div class="eyebrow"><span></span> <span data-i18n="eyebrow">record found</span></div>
         <h1>not done <em>yet...</em></h1>
-        <p class="intro">Uma investigação narrativa sobre segredos de família, amizades testadas e uma sala que deveria ter permanecido trancada.</p>
+        <p class="intro" data-i18n="intro">A narrative investigation about family secrets, tested friendships and a room that should have stayed locked.</p>
         <div class="cta-row">
-          <button class="primary" id="notifyButton">avisem quando abrir <span aria-hidden="true">↗</span></button>
-          <button class="ghost" id="peekButton">ler o arquivo <span aria-hidden="true">↓</span></button>
+          <button class="primary" id="notifyButton"><span data-i18n="notify">notify me when it opens</span> <span aria-hidden="true">↗</span></button>
+          <button class="ghost" id="peekButton"><span data-i18n="peek">read the file</span> <span aria-hidden="true">↓</span></button>
         </div>
       </section>
 
       <aside class="side revealed delay" aria-label="Project progress">
         <div class="orbit"><div class="orbit-inner"></div></div>
         <div class="date-card">
-          <div class="card-label"><span>ficha do caso</span><span>nº 04</span></div>
-          <h2>quase<br>lá.</h2>
-          <p>O arquivo está incompleto.<br>As pistas continuam chegando.</p>
+          <div class="card-label"><span data-i18n="fileCard">case file</span><span>no. 04</span></div>
+          <h2 data-i18n="almost">almost<br>there.</h2>
+          <p data-i18n="cardText">The file is incomplete.<br>New clues keep arriving.</p>
           <div class="progress">
-            <div class="progress-top"><span>investigação</span><span>64%</span></div>
+            <div class="progress-top"><span data-i18n="progress">investigation</span><span>64%</span></div>
             <div class="track"><div class="fill"></div></div>
           </div>
         </div>
@@ -169,32 +182,85 @@
     <section class="case-file" id="case-file">
       <div class="case-grid">
         <div>
-          <div class="case-kicker">resumo do caso / 17-B</div>
-          <h2>Todo mistério<br>deixa marcas.</h2>
+          <div class="case-kicker" data-i18n="caseKicker">case summary / 17-B</div>
+          <h2 data-i18n="caseTitle">Every mystery<br>leaves a mark.</h2>
         </div>
         <div class="case-copy">
-          <p>Lia encontra um envelope estranho em casa. Dentro dele, uma fotografia antiga e o número <strong>17</strong> apontam para um lugar esquecido do Colégio Horizonte: o Armário 17 e, além dele, a sala 17-B.</p>
-          <p>A partir daí, cada escolha muda o que ela realmente sabe. Abrir ou não abrir o envelope, contar ou não contar para Maya, examinar o armário, procurar documentos na biblioteca ou encarar a mãe: nada aparece magicamente depois. As pistas acumuladas constroem uma investigação única para cada jogador.</p>
-          <p>Entre jantares em família, corredores antigos e cenas no porão, Lia cruza com uma professora que esconde informações, uma diretora que tenta impedir a busca e novas testemunhas: Augusto, Rafael e Clara. Até a sopa de letras da mãe pode revelar uma carta, um envelope ou o número 17.</p>
-          <p>No julgamento final, você reúne evidências e decide em quem acreditar. A culpada pode ser a mãe, Maya, a diretora, a professora, Augusto, Rafael, Clara ou a figura misteriosa. Você pode acertar, acusar a pessoa errada, não acusar ninguém ou encontrar o último envelope e chegar à <strong>Verdade Completa</strong>.</p>
-          <div class="case-tags"><span>escolhas com consequência</span><span>pistas persistentes</span><span>17 finais planejados</span><span>culpado variável</span></div>
+          <p data-i18n="story1">Lia finds a strange envelope at home. Inside, an old photograph and the number <strong>17</strong> point to a forgotten place at Horizon School: Locker 17 and, beyond it, room 17-B.</p>
+          <p data-i18n="story2">From there, every choice changes what she truly knows. Opening the envelope, telling Maya, examining the locker, searching the library or confronting her mother: nothing appears magically later. The clues build a different investigation for every player.</p>
+          <p data-i18n="story3">Between family dinners, old corridors and scenes in the basement, Lia meets a teacher hiding information, a principal trying to stop the search, and new witnesses: Augusto, Rafael and Clara. Even her mother's word search can reveal a letter, an envelope or the number 17.</p>
+          <p data-i18n="story4">At the final trial, you gather evidence and decide who to trust. The culprit may be Mother, Maya, the principal, the teacher, Augusto, Rafael, Clara or the mysterious figure. You may be right, accuse the wrong person, accuse no one or find the last envelope and reach the <strong>Complete Truth</strong>.</p>
+          <div class="case-tags"><span data-i18n="tag1">choices have consequences</span><span data-i18n="tag2">persistent clues</span><span data-i18n="tag3">17 planned endings</span><span data-i18n="tag4">variable culprit</span></div>
         </div>
       </div>
-      <div class="case-stamp">CONFIDENCIAL<br>AINDA ABERTO</div>
+      <div class="case-stamp" data-i18n="stamp">CONFIDENTIAL<br>STILL OPEN</div>
     </section>
 
     <footer>
-      <div class="status"><span class="status-dot"></span> arquivo online</div>
-      <div>© <span id="year"></span> <span class="credit">colégio horizonte</span></div>
+      <div class="status"><span class="status-dot"></span> <span data-i18n="status">archive online</span></div>
+      <div>© <span id="year"></span> <span class="credit">horizon school</span></div>
     </footer>
   </div>
   <script>
     const notifyButton = document.querySelector('#notifyButton');
     const peekButton = document.querySelector('#peekButton');
     const card = document.querySelector('.date-card');
+    const languageSelect = document.querySelector('#languageSelect');
+    const translations = {
+      en: {
+        brand: 'horizon archive', headerNote: 'case file in progress', languageLabel: 'language', eyebrow: 'record found',
+        intro: 'A narrative investigation about family secrets, tested friendships and a room that should have stayed locked.',
+        notify: 'notify me when it opens', peek: 'read the file', fileCard: 'case file', almost: 'almost<br>there.',
+        cardText: 'The file is incomplete.<br>New clues keep arriving.', progress: 'investigation', caseKicker: 'case summary / 17-B',
+        caseTitle: 'Every mystery<br>leaves a mark.',
+        story1: 'Lia finds a strange envelope at home. Inside, an old photograph and the number <strong>17</strong> point to a forgotten place at Horizon School: Locker 17 and, beyond it, room 17-B.',
+        story2: 'From there, every choice changes what she truly knows. Opening the envelope, telling Maya, examining the locker, searching the library or confronting her mother: nothing appears magically later. The clues build a different investigation for every player.',
+        story3: 'Between family dinners, old corridors and scenes in the basement, Lia meets a teacher hiding information, a principal trying to stop the search, and new witnesses: Augusto, Rafael and Clara. Even her mother\'s word search can reveal a letter, an envelope or the number 17.',
+        story4: 'At the final trial, you gather evidence and decide who to trust. The culprit may be Mother, Maya, the principal, the teacher, Augusto, Rafael, Clara or the mysterious figure. You may be right, accuse the wrong person, accuse no one or find the last envelope and reach the <strong>Complete Truth</strong>.',
+        tag1: 'choices have consequences', tag2: 'persistent clues', tag3: '17 planned endings', tag4: 'variable culprit', stamp: 'CONFIDENTIAL<br>STILL OPEN', status: 'archive online'
+      },
+      pt: {
+        brand: 'arquivo horizonte', headerNote: 'caso em andamento', languageLabel: 'idioma', eyebrow: 'registro encontrado',
+        intro: 'Uma investigação narrativa sobre segredos de família, amizades testadas e uma sala que deveria ter permanecido trancada.',
+        notify: 'avisem quando abrir', peek: 'ler o arquivo', fileCard: 'ficha do caso', almost: 'quase<br>lá.',
+        cardText: 'O arquivo está incompleto.<br>As pistas continuam chegando.', progress: 'investigação', caseKicker: 'resumo do caso / 17-B',
+        caseTitle: 'Todo mistério<br>deixa marcas.',
+        story1: 'Lia encontra um envelope estranho em casa. Dentro dele, uma fotografia antiga e o número <strong>17</strong> apontam para um lugar esquecido do Colégio Horizonte: o Armário 17 e, além dele, a sala 17-B.',
+        story2: 'A partir daí, cada escolha muda o que ela realmente sabe. Abrir o envelope, contar para Maya, examinar o armário, procurar documentos na biblioteca ou encarar a mãe: nada aparece magicamente depois. As pistas constroem uma investigação única para cada jogador.',
+        story3: 'Entre jantares em família, corredores antigos e cenas no porão, Lia cruza com uma professora que esconde informações, uma diretora que tenta impedir a busca e novas testemunhas: Augusto, Rafael e Clara. Até a sopa de letras da mãe pode revelar uma carta, um envelope ou o número 17.',
+        story4: 'No julgamento final, você reúne evidências e decide em quem acreditar. A culpada pode ser a mãe, Maya, a diretora, a professora, Augusto, Rafael, Clara ou a figura misteriosa. Você pode acertar, acusar a pessoa errada, não acusar ninguém ou encontrar o último envelope e chegar à <strong>Verdade Completa</strong>.',
+        tag1: 'escolhas com consequência', tag2: 'pistas persistentes', tag3: '17 finais planejados', tag4: 'culpado variável', stamp: 'CONFIDENCIAL<br>AINDA ABERTO', status: 'arquivo online'
+      },
+      ru: {
+        brand: 'архив горизонта', headerNote: 'дело расследуется', languageLabel: 'язык', eyebrow: 'запись найдена',
+        intro: 'Рассказ о семейных тайнах, проверенной дружбе и комнате, которая должна была остаться запертой.',
+        notify: 'сообщить мне об открытии', peek: 'открыть архив', fileCard: 'материалы дела', almost: 'почти<br>готово.',
+        cardText: 'Дело не завершено.<br>Новые улики всё находят путь.', progress: 'расследование', caseKicker: 'кратко о деле / 17-B',
+        caseTitle: 'У каждой тайны<br>остаются следы.',
+        story1: 'Лиа находит дома странный конверт. Внутри старая фотография и число <strong>17</strong>, указывающие на забытое место в школе «Горизонт»: шкафчик 17 и комнату 17-B.',
+        story2: 'С этого момента каждый выбор меняет то, что она действительно знает. Открыть конверт, рассказать Майе, осмотреть шкафчик, искать документы в библиотеке или поговорить с матерью: ничего не появляется само собой. Улики создают отдельное расследование для каждого игрока.',
+        story3: 'За семейными ужинами, в старых коридорах и подвале Лиа встречает учительницу, скрывающую сведения, директора, пытающуюся остановить поиски, и свидетелей Августо, Рафаэля и Клары. Даже головоломка матери может открыть письмо, конверт или число 17.',
+        story4: 'На финальном разбирательстве вы собираете улики и решаете, кому верить. Виновником может оказаться мать, Майя, директор, учительница, Августо, Рафаэль, Клара или таинственная фигура. Можно угадать, обвинить не того, не обвинять никого или найти последний конверт и открыть <strong>Полную правду</strong>.',
+        tag1: 'выборы меняют историю', tag2: 'улики сохраняются', tag3: '17 вариантов финала', tag4: 'виновник меняется', stamp: 'СЕКРЕТНО<br>ДЕЛО ОТКРЫТО', status: 'архив онлайн'
+      }
+    };
+
+    function setLanguage(language) {
+      const content = translations[language];
+      document.documentElement.lang = language === 'pt' ? 'pt-BR' : language;
+      document.title = language === 'ru' ? 'Еще не готово...' : language === 'pt' ? 'ainda não está pronto...' : 'not done yet...';
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        element.innerHTML = content[element.dataset.i18n];
+      });
+      notifyButton.dataset.ready = 'false';
+    }
+
+    languageSelect.addEventListener('change', (event) => setLanguage(event.target.value));
 
     notifyButton.addEventListener('click', () => {
-      notifyButton.innerHTML = 'você está na lista <span aria-hidden="true">✓</span>';
+      const language = languageSelect.value;
+      const messages = { en: 'you are on the list', pt: 'você está na lista', ru: 'вы в списке' };
+      notifyButton.innerHTML = `${messages[language]} <span aria-hidden="true">✓</span>`;
       notifyButton.style.background = '#5b6541';
     });
 
